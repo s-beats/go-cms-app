@@ -1,0 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+INSERT INTO `products` (`name`) VALUES ("商品A");
+
+SET FOREIGN_KEY_CHECKS = 1;

@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  # MySQL
+  db:
+    image: mysql:5.7
+    platform: linux/x86_64
+    container_name: go-cms-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      # TODO: MYSQL_DATABASE,MYSQL_USER,MYSQL_PASSWORD,TZ,character-set-server,collation-server は SQL で設定する
+      MYSQL_DATABASE: go-cms
+      MYSQL_USER: go-cms-rw
+      MYSQL_PASSWORD: password
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker-volume/db/data:/var/lib/mysql
+      - ./fixtures/mysql:/opt/mysql:ro
+      - ./docker/mysql/conf.d/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+    ports:
+      - 3306:3306
+  # MinIO
+  # https://raw.githubusercontent.com/minio/minio/master/docs/orchestration/docker-compose/docker-compose.yaml
+  storage:
+    image: quay.io/minio/minio:RELEASE.2022-05-04T07-45-27Z
+    platform: linux/x86_64
+    container_name: go-cms-storage
+    environment:
+      MINIO_ROOT_USER: "user"
+      MINIO_ROOT_PASSWORD: "password"
+    volumes:
+      - ./docker-volume/minio/data:/data:cached
+    command: server --console-address ":9001" /data
+    ports:
+      - 9000:9000
+      - 9001:9001

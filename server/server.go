@@ -12,9 +12,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/s-beats/go-cms/env"
-	"github.com/s-beats/go-cms/factory"
-	"github.com/s-beats/go-cms/infra"
-	"github.com/s-beats/go-cms/middleware"
 )
 
 func Run() error {
@@ -22,15 +19,6 @@ func Run() error {
 	gin.SetMode(gin.ReleaseMode)
 
 	r := gin.New()
-
-	// Fixme: ややこしいのでMiddlewareのセットは一箇所にまとめたい
-	db, err := infra.NewDB()
-	if err != nil {
-		return err
-	}
-	registroy := factory.NewRegistory(db, infra.NewS3Uploader())
-	r.Use(middleware.RegistoryMiddleware(registroy))
-
 	defineRoutes(r)
 
 	hostname := env.HostName()

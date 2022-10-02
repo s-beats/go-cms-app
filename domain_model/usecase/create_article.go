@@ -1,13 +1,19 @@
 package usecase
 
+import "github.com/s-beats/go-cms/domain_model/domain"
+
 type UsecaseCreateArticle interface {
 	Run()
 }
 
-type usecaseCreateArticle struct{}
+type usecaseCreateArticle struct {
+	articleRepository domain.ArticleRepository
+}
 
-func NewUsecaseCreateArticle() UsecaseCreateArticle {
-	return &usecaseCreateArticle{}
+func NewUsecaseCreateArticle(ar domain.ArticleRepository) UsecaseCreateArticle {
+	return &usecaseCreateArticle{
+		articleRepository: ar,
+	}
 }
 
 func (u *usecaseCreateArticle) Run()

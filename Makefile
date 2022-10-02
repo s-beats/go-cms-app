@@ -17,3 +17,11 @@ init-db-local:dc-up
 .PHONEY: init-storage-local
 init-storage-local:dc-up
 	go run fixtures/storage/main.go
+
+.PHONEY: build-api
+build-api:
+	go build -o ./api ./cmd/api/main.go
+
+.PHONEY: build-batch
+build-batch:
+	go build -o ./batch ./cmd/batch/main.go

@@ -8,7 +8,7 @@ import (
 )
 
 // https://github.com/gin-gonic/gin/issues/274
-func ErrorMiddleware() gin.HandlerFunc {
+func HandleError() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Next()
 		errorToPrint := c.Errors.ByType(gin.ErrorTypePrivate).Last()

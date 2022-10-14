@@ -25,5 +25,5 @@ func defineRoutes(router *gin.Engine) {
 }
 
 func setCommonMiddleware(router *gin.Engine) {
-	router.Use(middleware.ErrorMiddleware())
+	router.Use(middleware.HandleError())
 }

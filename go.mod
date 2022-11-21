@@ -9,7 +9,7 @@ require (
 	github.com/minio/minio-go/v7 v7.0.32
 	github.com/rs/zerolog v1.26.1
 	gorm.io/driver/mysql v1.3.3
-	gorm.io/gorm v1.23.4
+	gorm.io/gorm v1.24.2
 )
 
 require (

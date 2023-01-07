@@ -3,7 +3,7 @@ module github.com/s-beats/go-cms
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.44.66
+	github.com/aws/aws-sdk-go v1.44.160
 	github.com/gin-gonic/gin v1.7.7
 	github.com/joho/godotenv v1.4.0
 	github.com/minio/minio-go/v7 v7.0.32
